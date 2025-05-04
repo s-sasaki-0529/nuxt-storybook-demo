@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <h1>Nuxt Storybook Demo</h1>
-    <NuxtLink to="/counter" class="counter-link"> カウンターを開く </NuxtLink>
+    <div class="links">
+      <NuxtLink to="/counter" class="nav-link"> カウンターを開く </NuxtLink>
+      <NuxtLink to="/todo" class="nav-link"> TODOを開く </NuxtLink>
+    </div>
   </div>
 </template>
 
@@ -11,7 +14,13 @@
   padding: 20px;
 }
 
-.counter-link {
+.links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.nav-link {
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
@@ -21,7 +30,7 @@
   border-radius: 4px;
 }
 
-.counter-link:hover {
+.nav-link:hover {
   background-color: #3aa876;
 }
 </style>
