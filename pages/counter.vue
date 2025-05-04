@@ -1,3 +1,8 @@
+<script setup>
+import CounterDisplay from "~/components/features/counter/CounterDisplay.vue";
+import CounterButtons from "~/components/features/counter/CounterButtons.vue";
+</script>
+
 <template>
   <div class="container">
     <h1>カウンター</h1>
