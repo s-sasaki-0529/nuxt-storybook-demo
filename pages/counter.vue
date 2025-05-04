@@ -6,6 +6,7 @@ import CounterButtons from "~/components/features/counter/CounterButtons.vue";
 <template>
   <div class="container">
     <h1>カウンター</h1>
+    <NuxtLink to="/" class="back-link">← 戻る</NuxtLink>
     <div class="counter-container">
       <CounterDisplay />
       <CounterButtons />
@@ -17,6 +18,17 @@ import CounterButtons from "~/components/features/counter/CounterButtons.vue";
 .container {
   text-align: center;
   padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #666;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #333;
 }
 
 .counter-container {

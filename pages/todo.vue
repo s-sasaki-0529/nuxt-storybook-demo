@@ -6,6 +6,7 @@ import TodoList from "~/components/features/todo/TodoList.vue";
 <template>
   <div class="container">
     <h1>TODO管理</h1>
+    <NuxtLink to="/" class="back-link">← 戻る</NuxtLink>
     <div class="todo-container">
       <TodoInput />
       <TodoList />
@@ -22,7 +23,18 @@ import TodoList from "~/components/features/todo/TodoList.vue";
 
 h1 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #666;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #333;
 }
 
 .todo-container {
