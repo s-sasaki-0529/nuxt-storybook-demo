@@ -5,7 +5,7 @@ const config: StorybookConfig = {
     "../components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../pages/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
-  addons: [],
+  addons: ["@storybook/addon-interactions"],
   framework: {
     name: "@storybook-vue/nuxt",
     options: {},

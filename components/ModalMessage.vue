@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <div v-if="isOpen" class="modal-overlay">
-      <div class="modal-content">
+      <div class="modal-content" role="dialog">
         <p class="modal-message">{{ message }}</p>
         <div class="modal-footer">
           <div class="modal-buttons">
