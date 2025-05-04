@@ -16,6 +16,10 @@ const toggleTodo = (id: number) => {
     todo.id === id ? { ...todo, completed: !todo.completed } : todo
   );
 };
+
+const deleteTodo = (id: number) => {
+  todos.value = todos.value.filter((todo) => todo.id !== id);
+};
 </script>
 
 <template>
@@ -25,9 +29,14 @@ const toggleTodo = (id: number) => {
       <div class="todo-list">
         <div v-for="todo in incompleteTodos" :key="todo.id" class="todo-item">
           <span>{{ todo.text }}</span>
-          <button @click="toggleTodo(todo.id)" class="toggle-button">
-            完了にする
-          </button>
+          <div class="button-group">
+            <button @click="toggleTodo(todo.id)" class="toggle-button">
+              完了にする
+            </button>
+            <button @click="deleteTodo(todo.id)" class="delete-button">
+              削除
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -37,9 +46,14 @@ const toggleTodo = (id: number) => {
       <div class="todo-list">
         <div v-for="todo in completedTodos" :key="todo.id" class="todo-item">
           <span class="completed">{{ todo.text }}</span>
-          <button @click="toggleTodo(todo.id)" class="toggle-button">
-            未完了に戻す
-          </button>
+          <div class="button-group">
+            <button @click="toggleTodo(todo.id)" class="toggle-button">
+              未完了に戻す
+            </button>
+            <button @click="deleteTodo(todo.id)" class="delete-button">
+              削除
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -49,13 +63,14 @@ const toggleTodo = (id: number) => {
 <style scoped>
 .todo-lists {
   display: flex;
-  flex-direction: column;
   gap: 40px;
+  flex-direction: row;
   margin: 20px 0;
 }
 
 .todo-section {
   flex: 1;
+  width: 400px;
 }
 
 .todo-section h2 {
@@ -94,7 +109,25 @@ const toggleTodo = (id: number) => {
   cursor: pointer;
 }
 
+.button-group {
+  display: flex;
+  gap: 8px;
+}
+
 .toggle-button:hover {
   background-color: #3aa876;
+}
+
+.delete-button {
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #bb2d3b;
 }
 </style>
