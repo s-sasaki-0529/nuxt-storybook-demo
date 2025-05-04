@@ -2,6 +2,8 @@
 import type { Todo } from "~/types/todo";
 
 const todos = useState<Todo[]>("todos", () => []);
+const isDeleteModalOpen = ref(false);
+const targetTodoId = ref<number | null>(null);
 
 const incompleteTodos = computed(() =>
   todos.value.filter((todo) => !todo.completed)
@@ -17,8 +19,22 @@ const toggleTodo = (id: number) => {
   );
 };
 
-const deleteTodo = (id: number) => {
-  todos.value = todos.value.filter((todo) => todo.id !== id);
+const confirmDelete = (id: number) => {
+  targetTodoId.value = id;
+  isDeleteModalOpen.value = true;
+};
+
+const handleConfirmDelete = () => {
+  if (targetTodoId.value !== null) {
+    todos.value = todos.value.filter((todo) => todo.id !== targetTodoId.value);
+  }
+  isDeleteModalOpen.value = false;
+  targetTodoId.value = null;
+};
+
+const handleCancelDelete = () => {
+  isDeleteModalOpen.value = false;
+  targetTodoId.value = null;
 };
 </script>
 
@@ -33,7 +49,7 @@ const deleteTodo = (id: number) => {
             <button @click="toggleTodo(todo.id)" class="toggle-button">
               完了にする
             </button>
-            <button @click="deleteTodo(todo.id)" class="delete-button">
+            <button @click="confirmDelete(todo.id)" class="delete-button">
               削除
             </button>
           </div>
@@ -50,7 +66,7 @@ const deleteTodo = (id: number) => {
             <button @click="toggleTodo(todo.id)" class="toggle-button">
               未完了に戻す
             </button>
-            <button @click="deleteTodo(todo.id)" class="delete-button">
+            <button @click="confirmDelete(todo.id)" class="delete-button">
               削除
             </button>
           </div>
@@ -58,6 +74,12 @@ const deleteTodo = (id: number) => {
       </div>
     </div>
   </div>
+  <ModalMessage
+    :isOpen="isDeleteModalOpen"
+    message="このTODOを削除してもよろしいですか？"
+    @submit="handleConfirmDelete"
+    @cancel="handleCancelDelete"
+  />
 </template>
 
 <style scoped>
