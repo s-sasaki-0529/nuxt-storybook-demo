@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  modules: ["@nuxtjs/storybook"],
   devtools: { enabled: true },
   typescript: {
     strict: true,
@@ -14,5 +15,11 @@ export default defineNuxtConfig({
   },
   imports: {
     autoImport: true,
+  },
+  // @ts-ignore
+  storybook: {
+    // @ts-ignore
+    host: "http://localhost",
+    port: 6006,
   },
 });
