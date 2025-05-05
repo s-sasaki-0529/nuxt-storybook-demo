@@ -5,18 +5,12 @@ const todos = useState<Todo[]>("todos", () => []);
 const isDeleteModalOpen = ref(false);
 const targetTodoId = ref<number | null>(null);
 
-const incompleteTodos = computed(() =>
-  todos.value.filter((todo) => !todo.completed)
-);
+const incompleteTodos = computed(() => todos.value.filter((todo) => !todo.completed));
 
-const completedTodos = computed(() =>
-  todos.value.filter((todo) => todo.completed)
-);
+const completedTodos = computed(() => todos.value.filter((todo) => todo.completed));
 
 const toggleTodo = (id: number) => {
-  todos.value = todos.value.map((todo) =>
-    todo.id === id ? { ...todo, completed: !todo.completed } : todo
-  );
+  todos.value = todos.value.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo));
 };
 
 const confirmDelete = (id: number) => {
@@ -46,12 +40,8 @@ const handleCancelDelete = () => {
         <div v-for="todo in incompleteTodos" :key="todo.id" class="todo-item">
           <span>{{ todo.text }}</span>
           <div class="button-group">
-            <button @click="toggleTodo(todo.id)" class="toggle-button">
-              完了にする
-            </button>
-            <button @click="confirmDelete(todo.id)" class="delete-button">
-              削除
-            </button>
+            <button @click="toggleTodo(todo.id)" class="toggle-button">完了にする</button>
+            <button @click="confirmDelete(todo.id)" class="delete-button">削除</button>
           </div>
         </div>
       </div>
@@ -63,12 +53,8 @@ const handleCancelDelete = () => {
         <div v-for="todo in completedTodos" :key="todo.id" class="todo-item">
           <span class="completed">{{ todo.text }}</span>
           <div class="button-group">
-            <button @click="toggleTodo(todo.id)" class="toggle-button">
-              未完了に戻す
-            </button>
-            <button @click="confirmDelete(todo.id)" class="delete-button">
-              削除
-            </button>
+            <button @click="toggleTodo(todo.id)" class="toggle-button">未完了に戻す</button>
+            <button @click="confirmDelete(todo.id)" class="delete-button">削除</button>
           </div>
         </div>
       </div>
